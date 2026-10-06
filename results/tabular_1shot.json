@@ -1,0 +1,60 @@
+{
+  "task": "tabular",
+  "n_way": 3,
+  "shot": 1,
+  "q_query": 10,
+  "train_episodes": 300,
+  "eval_episodes": 200,
+  "seed": 0,
+  "results": {
+    "finetune": {
+      "acc_mean": 0.9788333278894424,
+      "acc_std": 0.04112008500239324,
+      "adapt_ms_mean": 8.046431180000226,
+      "params": 10438,
+      "train_loss_mean": null
+    },
+    "protonet": {
+      "acc_mean": 0.9906666639447212,
+      "acc_std": 0.026068290145535918,
+      "adapt_ms_mean": 0.2594992999998169,
+      "params": 10048,
+      "train_loss_mean": 0.1900325355771929
+    },
+    "matching": {
+      "acc_mean": 0.9836666601896286,
+      "acc_std": 0.024264747287163144,
+      "adapt_ms_mean": 0.2275452900002506,
+      "params": 10048,
+      "train_loss_mean": 0.0878010290740834
+    },
+    "fomaml": {
+      "acc_mean": 0.9744999888539314,
+      "acc_std": 0.029434959846359993,
+      "adapt_ms_mean": 1.627685070000453,
+      "params": 10243,
+      "train_loss_mean": 0.18382216556424585
+    },
+    "reptile": {
+      "acc_mean": 0.9311666563153267,
+      "acc_std": 0.04989739520117999,
+      "adapt_ms_mean": 1.6285945600000673,
+      "params": 10243,
+      "train_loss_mean": 0.37296549141407015
+    },
+    "anil": {
+      "acc_mean": 0.9618333238363266,
+      "acc_std": 0.030622701934309764,
+      "adapt_ms_mean": 1.3652634300004252,
+      "params": 10243,
+      "train_loss_mean": 0.18751006947791515
+    },
+    "paho": {
+      "acc_mean": 0.9754999941587448,
+      "acc_std": 0.029903085235124693,
+      "adapt_ms_mean": 0.7289227800002607,
+      "params": 26755,
+      "train_loss_mean": 0.13121699343984444
+    }
+  }
+}

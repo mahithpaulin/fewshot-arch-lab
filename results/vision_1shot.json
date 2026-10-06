@@ -1,0 +1,60 @@
+{
+  "task": "vision",
+  "n_way": 5,
+  "shot": 1,
+  "q_query": 10,
+  "train_episodes": 300,
+  "eval_episodes": 200,
+  "seed": 0,
+  "results": {
+    "finetune": {
+      "acc_mean": 0.8020999975502491,
+      "acc_std": 0.10845086266419024,
+      "adapt_ms_mean": 8.38320152500053,
+      "params": 17356,
+      "train_loss_mean": null
+    },
+    "protonet": {
+      "acc_mean": 0.646500002592802,
+      "acc_std": 0.11324199924736367,
+      "adapt_ms_mean": 0.3175398199997659,
+      "params": 16576,
+      "train_loss_mean": 0.2762640713248402
+    },
+    "matching": {
+      "acc_mean": 0.7241999997198582,
+      "acc_std": 0.0983786524349223,
+      "adapt_ms_mean": 0.249649709999602,
+      "params": 16576,
+      "train_loss_mean": 0.1523860404143731
+    },
+    "fomaml": {
+      "acc_mean": 0.4938000012934208,
+      "acc_std": 0.08764451146057955,
+      "adapt_ms_mean": 1.7246667799998505,
+      "params": 16901,
+      "train_loss_mean": 1.063495484193166
+    },
+    "reptile": {
+      "acc_mean": 0.37709999937564137,
+      "acc_std": 0.11326777983423125,
+      "adapt_ms_mean": 1.7146606700006117,
+      "params": 16901,
+      "train_loss_mean": 1.5674311967690786
+    },
+    "anil": {
+      "acc_mean": 0.47259999960660937,
+      "acc_std": 0.0841738677093147,
+      "adapt_ms_mean": 1.4052827150003822,
+      "params": 16901,
+      "train_loss_mean": 1.1614145131905873
+    },
+    "paho": {
+      "acc_mean": 0.6325000020861625,
+      "acc_std": 0.11053393002826394,
+      "adapt_ms_mean": 0.8770745050004081,
+      "params": 33283,
+      "train_loss_mean": 0.2763719007229277
+    }
+  }
+}
