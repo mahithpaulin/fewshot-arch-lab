@@ -4,9 +4,9 @@ Research lab: systematic comparison of **meta-learning** learners on
 heterogeneous few-shot tasks, followed by a novel architecture designed for
 **1–2 example learning with single-forward-pass adaptation**.
 
-> Status: design + code landed; benchmark numbers below are filled in from
-> `results/` after the GitHub Actions run. Where cells say *pending*, the
-> workflow has not reported yet — no numbers are invented.
+> Status: benchmark complete (Actions run passed, `results/` committed).
+> Section 4 quotes the real numbers; Section 5 scores four pre-registered
+> hypotheses against them — three were falsified, one partial.
 
 ## 1. Why this slice
 
@@ -70,26 +70,60 @@ fallback contribution is the 4-task bake-off itself.
 ## 4. Results
 
 Auto-generated tables live in `results/SUMMARY.md` (committed by Actions).
-Snapshot after the latest run:
+Snapshot from the passing run (`300` train / `200` eval episodes, seed 0,
+`results/*.json`): accuracy = mean±std over eval episodes, adapt = one
+`predict()` call.
 
-*pending — workflow has not reported yet.*
+**vision 5-way** — finetune **0.802±0.108** (1-shot) / **0.946±0.047**
+(5-shot); matching 0.724/0.848; protonet 0.647/0.770; paho 0.633/0.749;
+fomaml 0.494/0.514; anil 0.473/0.465; reptile 0.377/0.400.
 
-Readout protocol: within each task×shot cell, compare `acc_mean±std`;
-`adapt_ms_mean` measures one `predict()` call (forward + adaptation steps);
-`params` counts trainable parameters of the meta-model.
+**coding 4-way** — finetune **0.535±0.104** (1-shot) / **0.613±0.083**
+(2-shot); paho 0.398/0.452; protonet 0.404/0.432; matching 0.383/0.426;
+fomaml 0.312/0.323; reptile 0.292/0.291; anil 0.294/0.298.
 
-## 5. Analysis (to be completed from real numbers)
+**tabular 3-way** — ceiling: everything 0.93–1.00 (protonet 0.991/0.998,
+finetune 0.979/0.998, paho 0.975/0.975). Task too easy; discriminates nothing.
 
-Hypotheses registered *before* seeing results:
+**chess 2-way** — null: all methods 0.48–0.54 ≈ chance at both 1- and 5-shot.
+The 18-d features + random-play positions carry no learnable threat signal at
+this budget. Reported as a null, not tuned until positive.
 
-1. `protonet` ≥ `matching` on vision/tabular (euclidean beats cosine at K=1).
-2. `fomaml`/`anil` best on coding (relational rule needs head flexibility),
-   worst adapt-time everywhere.
-3. `paho` matches `protonet` at 1-shot with lower variance, and closes the
-   gap to gradient methods at 5-shot while adapting 5–20× faster.
-4. `finetune` trails everywhere at 1-shot (20 steps overfit 1 example).
+Adaptation cost (representative, vision 5-shot): matching/protonet
+~0.3 ms (0 steps) < paho ~0.9 ms (≤1 step) < anil ~1.4 ms < fomaml/reptile
+~1.8 ms (3 steps) < finetune ~8.8 ms (20 steps). PAHO is ~2× faster than
+gradient meta-learners, ~10× faster than fine-tuning — not the 5–20×
+hypothesized.
 
-Whatever the numbers say — including a null — will be reported as-is.
+## 5. Analysis — hypotheses vs numbers
+
+1. `protonet` ≥ `matching` on vision/tabular — **falsified** on vision
+   (matching wins 0.724 vs 0.647 at 1-shot, 0.848 vs 0.770 at 5-shot);
+   tabular is a ceiling tie.
+2. `fomaml`/`anil` best on coding — **strongly falsified**; they are the
+   worst on coding (≤0.32) and weak everywhere. Three inner steps over 300
+   episodes are not enough to meta-learn an initialization here.
+3. `paho` matches `protonet` at 1-shot, closes the gap at 5-shot while
+   adapting much faster — **partial**: PAHO ≈ ProtoNet on vision 1-shot
+   (0.633 vs 0.647, within noise), beats it on coding 2-shot (0.452 vs
+   0.432), and adapts ~2× faster than MAML-family. But it never beats the
+   best baseline in any cell.
+4. `finetune` trails at 1-shot — **falsified**: supervised pretraining +
+   20 SGD steps is the *best* 1-shot method on vision (0.802) and coding
+   (0.535). With tiny meta-training budgets, transfer beats episodic
+   meta-learning outright.
+
+Takeaway, stated plainly: **no method here learns from 1–2 examples at
+anything close to generalization** except on the trivial tabular task.
+PAHO is a legitimate fast adapter (single forward pass + ≤1 gated step,
+2× quicker than MAML, competitive with ProtoNet), but it is an incremental
+hybrid, not a breakthrough. The honest contributions are (a) the 4-task
+bake-off with two falsified expectations and one clean null (chess), and
+(b) a working, documented starting point for hypernetwork-based fast
+adaptation. Next steps that could change the picture: 5–10× more episodes,
+a convolutional encoder for vision, harder tabular splits, and a chess
+signal worth learning (e.g. tactical-motif labels instead of mate-in-1
+from random play).
 
 ## 6. Limitations & threats
 
