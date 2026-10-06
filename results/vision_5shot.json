@@ -10,51 +10,51 @@
     "finetune": {
       "acc_mean": 0.9460999980568886,
       "acc_std": 0.04712526118358169,
-      "adapt_ms_mean": 8.815247289999704,
+      "adapt_ms_mean": 4.57180924999939,
       "params": 17356,
       "train_loss_mean": null
     },
     "protonet": {
-      "acc_mean": 0.7700999966263771,
-      "acc_std": 0.07952351406642195,
-      "adapt_ms_mean": 0.32378157999950474,
+      "acc_mean": 0.7704999965429306,
+      "acc_std": 0.07944651785041465,
+      "adapt_ms_mean": 0.15736107999970272,
       "params": 16576,
-      "train_loss_mean": 0.19418351704487577
+      "train_loss_mean": 0.19418368832906707
     },
     "matching": {
       "acc_mean": 0.8478999927639961,
       "acc_std": 0.05830600485018948,
-      "adapt_ms_mean": 0.2614239949998165,
+      "adapt_ms_mean": 0.11615938999995024,
       "params": 16576,
-      "train_loss_mean": 0.11541161330416799
+      "train_loss_mean": 0.11541161090756456
     },
     "fomaml": {
       "acc_mean": 0.5143000014126301,
       "acc_std": 0.08780381872439667,
-      "adapt_ms_mean": 1.7659146049998498,
+      "adapt_ms_mean": 1.1680381100000403,
       "params": 16901,
-      "train_loss_mean": 1.052373720308145
+      "train_loss_mean": 1.052373709877332
     },
     "reptile": {
       "acc_mean": 0.4003000005148351,
       "acc_std": 0.11768564047584658,
-      "adapt_ms_mean": 1.7687510949993879,
+      "adapt_ms_mean": 1.0051738149997647,
       "params": 16901,
-      "train_loss_mean": 1.5697748692830404
+      "train_loss_mean": 1.5697748617331186
     },
     "anil": {
       "acc_mean": 0.46460000082850456,
       "acc_std": 0.07873271228224003,
-      "adapt_ms_mean": 1.4416228499996464,
+      "adapt_ms_mean": 0.7762481249999098,
       "params": 16901,
-      "train_loss_mean": 1.15279174943765
+      "train_loss_mean": 1.152791745464007
     },
     "paho": {
-      "acc_mean": 0.7492999988794327,
-      "acc_std": 0.06999649530298896,
-      "adapt_ms_mean": 0.8912973400000368,
+      "acc_mean": 0.7534000012278557,
+      "acc_std": 0.0706854922462988,
+      "adapt_ms_mean": 0.4857832150001684,
       "params": 33283,
-      "train_loss_mean": 0.18935209042703113
+      "train_loss_mean": 0.189011059293213
     }
   }
 }
