@@ -210,6 +210,8 @@ class FineTune(nn.Module):
             ys = np.concatenate([np.full(len(pools[t]), i) for i, t in enumerate(tids)])
         else:
             raise ValueError(task)
+        import numpy as _np
+        Xs = _np.asarray(Xs, dtype=_np.float32)
         ncls = int(ys.max()) + 1
         self.pre_head = nn.Linear(64, ncls)
         opt = torch.optim.Adam(list(self.enc.parameters()) + list(self.pre_head.parameters()), lr=lr)
