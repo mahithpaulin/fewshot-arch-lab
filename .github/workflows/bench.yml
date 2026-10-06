@@ -1,0 +1,30 @@
+name: bench
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Run few-shot suite
+        run: python -m src.run --train-episodes 300 --eval-episodes 200 --shots 1 5
+      - name: Commit results
+        run: |
+          git config user.name "fewshot-bot"
+          git config user.email "fewshot-bot@users.noreply.github.com"
+          git add results/
+          git diff --cached --quiet || git commit -m "bench: $(date -u +%F) results"
+          git push
