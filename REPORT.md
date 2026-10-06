@@ -25,7 +25,7 @@ examples. The feasible free-tier slice:
   - `vision`: sklearn digits 8×8 + 90°-rotation pseudo-classes → **5-way**,
     12 train pseudo-classes / 8 held-out.
   - `tabular`: Wine + Iris, standardized, **3-way** exemplar-disjoint.
-  - `chess`: synthetic `python-chess` random-play positions, 20-d
+  - `chess`: synthetic `python-chess` random-play positions, 18-d
     handcrafted features, **2-way** mate-in-1-threat vs quiet,
     exemplar-disjoint, classes balanced by rejection sampling.
   - `coding`: ListOps DSL (10 transforms), pair encoding

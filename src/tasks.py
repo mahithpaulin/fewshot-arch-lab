@@ -9,7 +9,7 @@ TASK_INFO = {
     # n_way used for both train and test; input_dim fixed per task
     "vision":  {"n_way": 5, "input_dim": 64},
     "tabular": {"n_way": 3, "input_dim": 13},
-    "chess":   {"n_way": 2, "input_dim": 20},
+    "chess":   {"n_way": 2, "input_dim": 18},
     "coding":  {"n_way": 4, "input_dim": 22},
 }
 
