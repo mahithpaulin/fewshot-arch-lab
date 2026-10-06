@@ -212,7 +212,8 @@ def sample_episode(task, split, n_way, k_shot, q_query, rng):
             n = len(arr)
             cut = int(0.8 * n)
             part = arr[:cut] if split == "train" else arr[cut:]
-            idx = rng.choice(len(part), k_shot + q_query, replace=False)
+            need = k_shot + q_query
+            idx = rng.choice(len(part), need, replace=len(part) < need)
             samp = part[idx]
             sx.append(samp[:k_shot]); sy += [li] * k_shot
             qx.append(samp[k_shot:]); qy += [li] * q_query
